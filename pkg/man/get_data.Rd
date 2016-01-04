@@ -1,4 +1,4 @@
-\name{data_tools}
+\name{get_data}
 \alias{get_data}
 \title{Tools for Getting and Working with Data}
 \description{

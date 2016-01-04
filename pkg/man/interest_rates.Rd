@@ -1,27 +1,30 @@
-\name{stock_data}
-\alias{RSHCQ}
-\alias{}
+\name{interest_rates}
+\alias{ZCB_CA}
+\alias{ZCB_US}
 \docType{data}
-\title{}
+\title{Interest-Rate Data}
 \description{
-  Data set consisting of 69 columns of data about the German elections
-  2002 and 2005.
-
-  TODO: all
+  Zero-coupon bond yield curves in CAD and USD.
 }
 \usage{
-data("")
-data("")
+data("ZCB_CA")
+data("ZCB_US")
 }
 \format{
-  TODO
+  \code{\link{xts}} objects containing zero-coupon bond yield curves
+  for times to maturity ranging from one to thirty years. Only trading
+  days with available values for all maturities are included.
 }
 \source{
-  The data was obtained from TODO on 2016-01-03.
+  \code{ZCB_CA} was obtained from
+  \url{http://www.bankofcanada.ca/rates/interest-rates/bond-yield-curves/}
+  and \code{ZCB_US} was obtained from
+  \url{https://www.quandl.com/data/FED/SVENY-US-Treasury-Zero-Coupon-Yield-Curve}
+  via Quandl; both data sets were drawn on 2016-01-03.
 }
 \author{Marius Hofert}
 \examples{
-data("")
-data("")
+data("ZCB_CA")
+data("ZCB_US")
 }
 \keyword{datasets}

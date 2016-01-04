@@ -1,5 +1,5 @@
 \name{commodities}
-\alias{OIL}
+\alias{OIL_Brent}
 \alias{GOLD}
 \docType{data}
 \title{Commodity Data}
@@ -7,12 +7,12 @@
   Data sets containing commodities.
 }
 \usage{
-data("OIL")
+data("OIL_Brent")
 data("GOLD")
 }
 \format{
   \code{\link{xts}} objects containing the Brent Crude price in USD per
-  barrel (for \code{OIL}) and the World Gold Council gold price in USD
+  barrel (for \code{OIL_Brent}) and the World Gold Council gold price in USD
   per troy ounce (for \code{GOLD}).
 }
 \source{
@@ -21,7 +21,7 @@ data("GOLD")
 }
 \author{Marius Hofert}
 \examples{
-data("OIL")
+data("OIL_Brent")
 data("GOLD")
 }
 \keyword{datasets}
