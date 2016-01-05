@@ -19,8 +19,8 @@ end <- "2015-12-31" # last trading day we consider
 ## Radioshack
 ## Defaulted early 2015 => Yahoo Finance only has
 ## https://www.google.com/finance/historical?q=OTCMKTS%3ARSHCQ&ei=N_CAVvnUKsjjsAHJ3YvwDg
-## but no adjusted close price (and values differ slightly) from when Alex got
-## the data from Yahoo Finance on 2015-01-21 (=> we use the data as of 2015-01-21 here)
+## but no adjusted close price (and values differ slightly)
+## => Use the data from Yahoo Finance as of 2015-01-21 here (collected by Alex J. McNeil)
 RSHCQ <- read.table("data_RSHCQ.csv", sep=",", header=TRUE, row.names=1) # get data
 dates <- as.Date(row.names(RSHCQ), format="%Y-%m-%d") # get dates
 RSHCQ <- xts(RSHCQ, dates)[,"Adj.Close"] # create an xts object
