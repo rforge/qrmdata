@@ -7,8 +7,9 @@
 \alias{EURSTOXX}
 \alias{CAC}
 \alias{DAX}
+\alias{CSI}
 \alias{HSI}
-\alias{SCI}
+\alias{SSEC}
 \alias{NIKKEI}
 \docType{data}
 \title{Stock Index Data}
@@ -24,8 +25,9 @@ data("SMI")
 data("EURSTOXX")
 data("CAC")
 data("DAX")
+data("CSI")
 data("HSI")
-data("SCI")
+data("SSEC")
 data("NIKKEI")
 }
 \format{
@@ -38,8 +40,10 @@ data("NIKKEI")
   Euro Stoxx 50 (\code{EURSTOXX}; ticker symbol ``^STOXX50E''),
   Cotation \enc{Assistée}{Assistee} en Continu (\code{CAC}; ticker symbol ``^FCHI''),
   Deutscher Aktienindex (\code{DAX}; ticker sybmol ``^GDAXI''),
+  China Securities Index (\code{CSI}; ticker sybmol ``000300.SS''),
   Hang Seng Index (\code{HSI}; ticker symbol ``^HSI''),
-  Shanghai Composite Index (\code{SCI}; ticker symbol ``000001.SS'') and the
+  Shanghai Stock Exchange Composite Index (\code{SSEC}; ticker symbol
+  ``000001.SS'') and the
   NIKKEI (\code{NIKKEI}; ticker symbol ``^N225'')
   from their first date of availablility to 2015-12-31.
 }
@@ -58,8 +62,9 @@ data("SMI")
 data("EURSTOXX")
 data("CAC")
 data("DAX")
+data("CSI")
 data("HSI")
-data("SCI")
+data("SSEC")
 data("NIKKEI")
 }
 \keyword{datasets}

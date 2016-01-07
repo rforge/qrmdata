@@ -7,7 +7,7 @@ vignette: >
   %\VignetteIndexEntry{Fetching the Datasets of qrmdata}
 ---
 ```{r, message=FALSE}
-require(qrmtools)
+require(qrmdata)
 require(xts)
 
 end <- "2015-12-31" # last trading day we consider
@@ -48,29 +48,33 @@ save(NASDAQ, file="NASDAQ.rda", compress="xz")
 FTSE <- get_data("^FTSE", to=end)
 save(FTSE, file="FTSE.rda", compress="xz")
 
-## SMI
+## SMI (Swiss Market Index)
 SMI <- get_data("^SSMI", to=end)
 save(SMI, file="SMI.rda", compress="xz")
 
-## Euro Stoxx 50
+## Euro Stoxx 50 (stock index of Eurozone stocks)
 EURSTOXX <- get_data("^STOXX50E", to=end)
 save(EURSTOXX, file="EURSTOXX.rda", compress="xz")
 
-## CAC
+## CAC (Cotation Assistee en Continu)
 CAC <- get_data("^FCHI", to=end)
 save(CAC, file="CAC.rda", compress="xz")
 
-## DAX
+## DAX (Deutscher Aktienindex)
 DAX <- get_data("^GDAXI", to=end)
 save(DAX, file="DAX.rda", compress="xz")
+
+## CSI (China Securities Index)
+CSI <- get_data("000300.SS", to=end)
+save(CSI, file="CSI.rda", compress="xz")
 
 ## HSI (Hang Seng Index; open to overseas investors)
 HSI <- get_data("^HSI", to=end)
 save(HSI, file="HSI.rda", compress="xz")
 
-## SCI (Shanghai Composite Index; restricted to domestic investors)
-SCI <- get_data("000001.SS", to=end)
-save(SCI, file="SCI.rda", compress="xz")
+## SSEC (Shanghai Stock Exchange Composite Index; restricted to domestic investors)
+SSEC <- get_data("000001.SS", to=end)
+save(SSEC, file="SSEC.rda", compress="xz")
 
 ## NIKKEI
 NIKKEI <- get_data("^N225", to=end)
