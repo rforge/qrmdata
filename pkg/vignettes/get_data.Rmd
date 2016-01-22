@@ -2,6 +2,9 @@
 title: Fetching the Datasets of qrmdata
 author: Marius Hofert
 date: '`r Sys.Date()`'
+output:
+  knitr:::html_vignette:
+    css: style.css
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{Fetching the Datasets of qrmdata}
