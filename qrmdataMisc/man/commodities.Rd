@@ -17,7 +17,8 @@ data("GOLD")
 }
 \source{
   The data was obtained from Federal Reserve Economic Data (FRED) via
-  Quandl on 2016-01-03; see \code{vignette("get_data", package="qrmdata")}.
+  Quandl on 2016-01-03 with the function
+  \code{\link[qrmtools]{get_data}()} from \CRANpkg{qrmtools}).
 }
 \author{Marius Hofert}
 \examples{

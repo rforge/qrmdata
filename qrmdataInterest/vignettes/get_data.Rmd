@@ -1,0 +1,75 @@
+---
+title: Fetching Financial Data Sets
+author: Marius Hofert
+date: '`r Sys.Date()`'
+output:
+  html_vignette:
+    css: style.css
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Fetching Financial Data Sets}
+---
+```{r, message=FALSE}
+require(qrmtools)
+require(xts)
+
+end <- "2015-12-31" # last day we consider
+```
+
+## Interest rate data
+
+### Canada
+
+```{r, eval=FALSE}
+## Get data from http://www.bankofcanada.ca/rates/interest-rates/bond-yield-curves/
+ZCB_CA <- read.csv("data_yield_curves_CA.csv", header=TRUE, na.strings=" na", row.names=1)
+head(ZCB_CA) # quick look
+ZCB_CA <- ZCB_CA[,-ncol(ZCB_CA)] # remove last (empty) column
+## Pick out rows with *all* available data only
+ZCB_CA <- ZCB_CA[apply(!is.na(ZCB_CA), 1, all),]
+## Create Date object
+dates <- as.Date(row.names(ZCB_CA), format="%Y-%m-%d")
+## Create xts object
+ZCB_CA <- xts(ZCB_CA, dates)
+## Fix column names
+clnms <- colnames(ZCB_CA)
+clnms <- gsub("YR", "y", gsub("ZC", "", clnms)) # remove leading and trailing characters
+clnms <- sapply(clnms, function(x) { # insert "."
+    if(nchar(x) == 4) { # insert "." after first char
+        gsub('^(.{1})(.*)$', '\\1.\\2', x)
+    } else { # insert "." after first char
+        gsub('^(.{2})(.*)$', '\\1.\\2', x)
+    }
+})
+colnames(ZCB_CA) <- clnms
+head(ZCB_CA)
+## Save
+save(ZCB_CA, file="ZCB_CA.rda", compress="xz")
+
+## Plot
+if(FALSE)
+    plot.zoo(ZCB_CA, screens=1, col=adjustcolor("black", alpha.f=0.05))
+```
+
+
+### US
+
+```{r, eval=FALSE}
+## Get data from https://www.quandl.com/data/FED/SVENY-US-Treasury-Zero-Coupon-Yield-Curve
+ZCB_US <- get_data("FED/SVENY", to=end, src="quandl")
+head(ZCB_US) # quick look
+## Pick out rows with *all* available data only
+ZCB_US <- ZCB_US[apply(!is.na(ZCB_US), 1, all),]
+## Fix column names
+clnms <- colnames(ZCB_US)
+clnms <- paste0(gsub("SVENY", "", clnms),"y") # remove leading characters and append "y"
+clnms[1:9] <- substr(clnms[1:9], 2, 3) # remove leading "0"
+colnames(ZCB_US) <- clnms
+head(ZCB_US)
+## Save
+save(ZCB_US, file="ZCB_US.rda", compress="xz")
+
+## Plot
+if(FALSE)
+    plot.zoo(ZCB_US, screens=1, col=adjustcolor("black", alpha.f=0.05))
+```

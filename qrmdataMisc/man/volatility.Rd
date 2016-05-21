@@ -15,8 +15,8 @@ data("VIX")
 }
 \source{
   The data was obtained from Yahoo Finance
-  (\url{http://finance.yahoo.com/}) on 2016-01-03;
-  see \code{vignette("get_data", package="qrmdata")}.
+  (\url{http://finance.yahoo.com/}) on 2016-01-03 via the
+  function \code{\link[qrmtools]{get_data}()} from \CRANpkg{qrmtools}).
 }
 \author{Marius Hofert}
 \examples{

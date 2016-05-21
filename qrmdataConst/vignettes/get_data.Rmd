@@ -1,0 +1,69 @@
+---
+title: Fetching Financial Data Sets
+author: Marius Hofert
+date: '`r Sys.Date()`'
+output:
+  html_vignette:
+    css: style.css
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Fetching Financial Data Sets}
+---
+```{r, message=FALSE}
+require(qrmtools)
+require(xts)
+
+end <- "2015-12-31" # last day we consider
+```
+
+## Constituents data
+
+% Algorithm for all but S&P 500:
+% 1) Go to finance.yahoo.com -> ^DJI -> Components
+% 2) Download the table to a .csv file (by copy-paste)
+% 3) Remove everything but the first column (containing the tickers); keep the last line break
+
+```{r, eval=FALSE}
+## Dow Jones constituents
+## See https://finance.yahoo.com/q/cp?s=%5EDJI (drawn on 2015-12-10)
+DJ_const_info <- read.table("data_DJ_const_tab.csv")
+colnames(DJ_const_info) <- "Ticker"
+DJ_const <- get_data(DJ_const_info[,1], to=end)
+save(DJ_const, file="DJ_const.rda", compress="xz") # Note: No info besides tickers available => don't save *_const_info
+
+## FTSE 100 constituents
+## See https://uk.finance.yahoo.com/q/cp?s=%5EFTSE (drawn on 2015-12-10)
+## Note: ncol(FTSE_const)=98 only
+FTSE_const_info <- read.table("data_FTSE_const_tab.csv")
+colnames(FTSE_const_info) <- "Ticker"
+FTSE_const <- get_data(FTSE_const_info[,1], to=end)
+save(FTSE_const, file="FTSE_const.rda", compress="xz") # Note: No info besides tickers available => don't save *_const_info
+
+## SMI constituents
+## See https://uk.finance.yahoo.com/q/cp?s=%5ESSMI (drawn on 2015-12-10)
+## Note: 6/20 stocks missing
+if(FALSE) {
+    SMI_const_info <- read.table("data_SMI_const_tab.csv")
+    colnames(SMI_const_info) <- "Ticker"
+    SMI_const <- get_data(SMI_const_info[,1], to=end)
+    save(SMI_const, file="SMI_const.rda", compress="xz") # Note: No info besides tickers available => don't save *_const_info
+}
+
+## Euro Stoxx 50 constituents
+## See https://uk.finance.yahoo.com/q/cp?s=%5ESTOXX50E (drawn on 2015-12-10)
+## Note: 2 stocks missing
+EURSTX_const_info <- read.table("data_EURSTX_const_tab.csv")
+colnames(EURSTX_const_info) <- "Ticker"
+EURSTX_const <- get_data(EURSTX_const_info[,1], to=end)
+save(EURSTX_const, file="EURSTX_const.rda", compress="xz") # Note: No info besides tickers available => don't save *_const_info
+
+## HSI constituents
+## See https://uk.finance.yahoo.com/q/cp?s=%5EHSI (drawn on 2015-12-10)
+HSI_const_info <- read.table("data_HSI_const_tab.csv")
+colnames(HSI_const_info) <- "Ticker"
+HSI_const <- get_data(HSI_const_info[,1], to=end)
+save(HSI_const, file="HSI_const.rda", compress="xz") # Note: No info besides tickers available => don't save *_const_info
+
+## Note: NIKKEI constituents not available
+```
+

@@ -40,7 +40,8 @@ data("CNY_GBP")
 }
 \source{
   The data was obtained from OANDA (\url{http://www.oanda.com/}) on
-  2016-01-03; see \code{vignette("get_data", package="qrmdata")}.
+  2016-01-03 via the
+  function \code{\link[qrmtools]{get_data}()} from \CRANpkg{qrmtools}).
 }
 \author{Marius Hofert}
 \examples{

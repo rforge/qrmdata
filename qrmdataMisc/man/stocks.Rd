@@ -17,7 +17,8 @@ data("RSHCQ")
   adjusted close prices thereafter. We thus used the adjusted close
   prices from 1982-01-04 to 2015-01-20 which we drew from Yahoo Finance
   (\url{http://finance.yahoo.com/})
-  on 2015-01-21; see \code{vignette("get_data", package="qrmdata")}.
+  on 2015-01-21 via the function \code{\link[qrmtools]{get_data}()} from
+  \CRANpkg{qrmtools}).
 }
 \author{Marius Hofert}
 \examples{
