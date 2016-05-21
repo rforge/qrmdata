@@ -58,7 +58,7 @@ get_data(x, from=NULL, to=NULL, src=c("yahoo", "quandl", "oanda", "FRED", "googl
 ## Note: The following needs a working internet connection!
 ## Get stock and volatility data (all available trading days)
 dat <- get_data(c("^GSPC", "^VIX"))
-require(zoo)
+library(zoo)
 plot.zoo(dat, screens=1, main="", xlab="Trading day", ylab="Value")
 ## Alternative: plot.xts() from xtsExtra
 

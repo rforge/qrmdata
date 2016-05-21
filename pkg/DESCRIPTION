@@ -11,7 +11,7 @@ Authors@R: c(person(given = "Marius", family = "Hofert", role = c("aut", "cre"),
 Author: Marius Hofert [aut, cre], Kurt Hornik [aut]
 Maintainer: Marius Hofert <marius.hofert@uwaterloo.ca>
 Depends: R (>= 3.0.0)
-Imports: xts, quantmod, Quandl, zoo
+Imports: methods, xts, quantmod, Quandl, zoo
 Suggests: knitr
 Enhances:
 License: GPL-2 | GPL-3
