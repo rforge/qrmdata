@@ -1,0 +1,15 @@
+### Imports ####################################################################
+
+import("xts") # for xts namespace to be loaded (e.g., for working with datasets)
+
+importFrom("methods", "is")
+importFrom("quantmod", "getSymbols",
+           "Op", "Hi", "Lo", "Cl", "Vo", "Ad",
+           "OpCl", "ClCl", "HiCl", "LoCl", "LoHi", "OpHi", "OpLo", "OpOp")
+importFrom("Quandl", "Quandl")
+importFrom("zoo", "index")
+
+
+### Exports ####################################################################
+
+export("get_data")
