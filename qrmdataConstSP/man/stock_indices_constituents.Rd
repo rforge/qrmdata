@@ -17,8 +17,10 @@ data("SP500_const")
   \url{https://en.wikipedia.org/wiki/List_of_S\%26P_500_companies})
   as of 2015-10-12.
 
-  The constituents data ranges from 1980-01-02 (with missing
-  data if not available) to 2015-12-31.
+  The constituents data ranges from 1962-01-02 (with missing
+  data if not available) to 2015-12-31. Note that the data has been
+  rounded to two digits after the decimal point to fit in a single
+  \R package.
 }
 \source{
   The data was obtained from the respective URL

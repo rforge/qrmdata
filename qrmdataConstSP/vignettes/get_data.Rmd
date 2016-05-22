@@ -19,6 +19,8 @@ end   <- "2015-12-31" # last day we consider
 
 ## S&P 500 constituents data
 
+Note: The `.csv` file can be found in `./misc` in the package's source directory.
+
 % Algorithm for S&P 500 (constituents not available on finance.yahoo.com):
 % 1) Copy the ticker table from https://www.cboe.com/products/snp500.aspx without header
 % 2) Paste it to a new document in LibreOffice
@@ -31,6 +33,7 @@ end   <- "2015-12-31" # last day we consider
 SP500_const_info <- read.table("data_SP500_const_tab.csv", sep=",")
 colnames(SP500_const_info) <- c("Ticker", "Sector", "Subsector")
 SP500_const <- get_data(SP500_const_info[,1], to=end) # get data for these tickers (takes a while)
+SP500_const <- round(SP500_const, digits = 2) # round to fit in a single R package
 save(SP500_const, SP500_const_info, file="SP500_const.rda", compress="xz")
 
 if(FALSE) {
