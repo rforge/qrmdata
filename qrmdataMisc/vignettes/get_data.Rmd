@@ -9,7 +9,7 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{Fetching Financial Data Sets}
 ---
-```{r, message=FALSE}
+```{r, eval = FALSE}
 require(qrmtools)
 require(xts)
 
@@ -20,7 +20,7 @@ end <- "2015-12-31" # last trading day we consider
 
 Note: The `.csv` file can be found in `./misc` in the package's source directory.
 
-```{r, eval=FALSE}
+```{r, eval = FALSE}
 ## Radioshack
 ## Defaulted early 2015 => Yahoo Finance only has
 ## https://www.google.com/finance/historical?q=OTCMKTS%3ARSHCQ&ei=N_CAVvnUKsjjsAHJ3YvwDg
@@ -36,7 +36,7 @@ save(RSHCQ, file="RSHCQ.rda", compress="xz")
 
 ## 2 Stock index data
 
-```{r, eval=FALSE}
+```{r, eval = FALSE}
 ## S&P 500
 SP500 <- get_data("^GSPC", to=end)
 save(SP500, file="SP500.rda", compress="xz")
@@ -89,7 +89,7 @@ save(NIKKEI, file="NIKKEI.rda", compress="xz")
 
 ## 3 FX data
 
-```{r, eval=FALSE}
+```{r, eval = FALSE}
 ## Check that 1/"1 unit cur A in cur B" ~= "cur B in cur A"
 if(FALSE) {
     GBP_USD <- get_data("GBP/USD", to=end, src="oanda") # 1 GBP in USD
@@ -108,7 +108,7 @@ from <- "2000-01-01"
 
 ### 3.1 */USD
 
-```{r, eval=FALSE}
+```{r, eval = FALSE}
 ## CAD/USD
 CAD_USD <- get_data("CAD/USD", from=from, to=end, src="oanda")
 head(CAD_USD)
@@ -145,7 +145,7 @@ save(CNY_USD, file="CNY_USD.rda", compress="xz")
 
 ### 3.2 */GBP
 
-```{r, eval=FALSE}
+```{r, eval = FALSE}
 ## CAD/GBP
 CAD_GBP <- get_data("CAD/GBP", from=from, to=end, src="oanda")
 head(CAD_GBP)
@@ -182,7 +182,7 @@ save(CNY_GBP, file="CNY_GBP.rda", compress="xz")
 
 ## 4 Volatility data
 
-```{r, eval=FALSE}
+```{r, eval = FALSE}
 ## VIX
 VIX <- get_data("^VIX", to=end)
 save(VIX, file="VIX.rda", compress="xz")
@@ -191,7 +191,7 @@ save(VIX, file="VIX.rda", compress="xz")
 
 ## 5 Commodity data
 
-```{r, eval=FALSE}
+```{r, eval = FALSE}
 ## Oil
 ## Note: - Brent Crude is the benchmark (https://en.wikipedia.org/wiki/Brent_Crude)
 ##       - See https://www.quandl.com/data/FRED?keyword=dcoil for the tickers

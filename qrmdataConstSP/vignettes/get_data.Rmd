@@ -9,7 +9,7 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{Fetching Financial Data Sets}
 ---
-```{r, message=FALSE}
+```{r, eval = FALSE}
 require(qrmtools)
 require(xts)
 
@@ -21,13 +21,13 @@ end   <- "2015-12-31" # last day we consider
 
 Note: The `.csv` file can be found in `./misc` in the package's source directory.
 
-% Algorithm for S&P 500 (constituents not available on finance.yahoo.com):
-% 1) Copy the ticker table from https://www.cboe.com/products/snp500.aspx without header
-% 2) Paste it to a new document in LibreOffice
-% 3) Remove all columns except: Ticker, GICS, GICS subsectors
-% 4) Save it as a .csv file (when asked, make sure ',' is chosen as delimiter)
+<!-- Algorithm for S&P 500 (constituents not available on finance.yahoo.com):
+     1) Copy the ticker table from https://www.cboe.com/products/snp500.aspx without header
+     2) Paste it to a new document in LibreOffice
+     3) Remove all columns except: Ticker, GICS, GICS subsectors
+     4) Save it as a .csv file (when asked, make sure ',' is chosen as delimiter) -->
 
-```{r, eval=FALSE}
+```{r, eval = FALSE}
 ## S&P 500 constituents
 ## See https://www.cboe.com/products/snp500.aspx (updated 2015-10-12)
 SP500_const_info <- read.table("data_SP500_const_tab.csv", sep=",")

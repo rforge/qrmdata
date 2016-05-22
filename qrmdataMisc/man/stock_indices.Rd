@@ -49,7 +49,7 @@ data("NIKKEI")
 }
 \source{
   The data was obtained from Yahoo Finance on 2016-01-03
-  via the function \code{\link[qrmtools]{get_data}()} from \CRANpkg{qrmtools}).
+  via the function \code{get_data()} from \CRANpkg{qrmtools}.
 }
 \author{Marius Hofert}
 \examples{

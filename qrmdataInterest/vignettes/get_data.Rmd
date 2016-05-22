@@ -9,7 +9,7 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{Fetching Financial Data Sets}
 ---
-```{r, message=FALSE}
+```{r, eval = FALSE}
 require(qrmtools)
 require(xts)
 
@@ -22,7 +22,7 @@ Note: The `.csv` file can be found in `./misc` in the package's source directory
 
 ### Canada
 
-```{r, eval=FALSE}
+```{r, eval = FALSE}
 ## Get data from http://www.bankofcanada.ca/rates/interest-rates/bond-yield-curves/
 ZCB_CA <- read.csv("data_yield_curves_CA.csv", header=TRUE, na.strings=" na", row.names=1)
 head(ZCB_CA) # quick look
@@ -56,7 +56,7 @@ if(FALSE)
 
 ### US
 
-```{r, eval=FALSE}
+```{r, eval = FALSE}
 ## Get data from https://www.quandl.com/data/FED/SVENY-US-Treasury-Zero-Coupon-Yield-Curve
 ZCB_US <- get_data("FED/SVENY", to=end, src="quandl")
 head(ZCB_US) # quick look

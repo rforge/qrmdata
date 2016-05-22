@@ -21,7 +21,7 @@ data("ZCB_US")
   and \code{ZCB_US} was obtained from
   \url{https://www.quandl.com/data/FED/SVENY-US-Treasury-Zero-Coupon-Yield-Curve}
   via Quandl; both data sets were drawn on 2016-01-03 (\code{ZCB_US} via the
-  function \code{\link[qrmtools]{get_data}()} from \CRANpkg{qrmtools}).
+  function \code{get_data()} from \CRANpkg{qrmtools}).
 }
 \author{Marius Hofert}
 \examples{
