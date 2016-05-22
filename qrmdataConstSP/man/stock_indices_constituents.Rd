@@ -21,9 +21,9 @@ data("SP500_const")
   data if not available) to 2015-12-31.
 }
 \source{
-  The data was obtained from Yahoo Finance
-  (\url{http://finance.yahoo.com/}) on 2016-01-03 via the
-  function \code{\link[qrmtools]{get_data}()} from \CRANpkg{qrmtools}.
+  The data was obtained from the respective URL
+  on 2016-01-03 via the function \code{\link[qrmtools]{get_data}()}
+  from \CRANpkg{qrmtools}.
 }
 \author{Marius Hofert}
 \examples{
