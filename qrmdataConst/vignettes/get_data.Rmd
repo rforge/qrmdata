@@ -18,6 +18,8 @@ end <- "2015-12-31" # last day we consider
 
 ## Constituents data
 
+Note: The `.csv` files can be found in `./misc` in the package's source directory.
+
 % Algorithm for all but S&P 500:
 % 1) Go to finance.yahoo.com -> ^DJI -> Components
 % 2) Download the table to a .csv file (by copy-paste)

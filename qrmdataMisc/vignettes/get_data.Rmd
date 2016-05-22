@@ -18,6 +18,8 @@ end <- "2015-12-31" # last trading day we consider
 
 ## 1 Stock data
 
+Note: The `.csv` file can be found in `./misc` in the package's source directory.
+
 ```{r, eval=FALSE}
 ## Radioshack
 ## Defaulted early 2015 => Yahoo Finance only has
