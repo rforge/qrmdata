@@ -1,7 +1,7 @@
 Package: qrmdataConstSP
 Version: 0.0-1
 Encoding: UTF-8
-Title: Data sets for Quantitative Risk Management practice
+Title: Data Sets for Quantitative Risk Management Practice
 Description: Data sets to demonstrate various algorithms or methods related to
     	     Quantitative Risk Management.
 Authors@R: c(person(given = "Marius", family = "Hofert", role = c("aut", "cre"),
@@ -12,7 +12,7 @@ Author: Marius Hofert [aut, cre], Kurt Hornik [aut]
 Maintainer: Marius Hofert <marius.hofert@uwaterloo.ca>
 Depends: R (>= 3.0.0)
 Imports: xts
-Suggests: knitr
+Suggests: knitr, qrmtools
 Enhances:
 License: GPL-2 | GPL-3
 VignetteBuilder: knitr
