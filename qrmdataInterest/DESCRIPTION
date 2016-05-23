@@ -1,9 +1,8 @@
 Package: qrmdataInterest
 Version: 0.0-1
 Encoding: UTF-8
-Title: Data Sets for Quantitative Risk Management Practice
-Description: Data sets to demonstrate various algorithms or methods related to
-    	     Quantitative Risk Management.
+Title: Interest-Rate Data
+Description: Zero-coupon bond yield curves in CAD and USD.
 Authors@R: c(person(given = "Marius", family = "Hofert", role = c("aut", "cre"),
                     email = "marius.hofert@uwaterloo.ca"),
              person(given = "Kurt", family = "Hornik", role = "aut",

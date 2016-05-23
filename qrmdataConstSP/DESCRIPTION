@@ -1,9 +1,9 @@
 Package: qrmdataConstSP
 Version: 0.0-1
 Encoding: UTF-8
-Title: Data Sets for Quantitative Risk Management Practice
-Description: Data sets to demonstrate various algorithms or methods related to
-    	     Quantitative Risk Management.
+Title: Constituent Data of the S&P 500
+Description: Constituent Data of the S&P 500 as of 2015-10-12, including sector
+ information.
 Authors@R: c(person(given = "Marius", family = "Hofert", role = c("aut", "cre"),
                     email = "marius.hofert@uwaterloo.ca"),
              person(given = "Kurt", family = "Hornik", role = "aut",
