@@ -3,7 +3,7 @@ Version: 0.0-1
 Encoding: UTF-8
 Title: Constituent Data of Selected Major Stock Indices
 Description: Constituent data of major stock indices such as the Dow Jones,
- the FTSE 100, the Euro Stoxx 50 and the Hang Seng Index
+ the FTSE 100, the Euro Stoxx 50 and the Hang Seng Index.
 Authors@R: c(person(given = "Marius", family = "Hofert", role = c("aut", "cre"),
                     email = "marius.hofert@uwaterloo.ca"),
              person(given = "Kurt", family = "Hornik", role = "aut",
