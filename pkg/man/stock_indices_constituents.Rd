@@ -43,6 +43,9 @@ data("HSI_const")
   The data was obtained from the respective URLs
   on 2016-01-03 via the function \code{get_data()} from
   \CRANpkg{qrmtools}.
+
+  Note that for the S\&P 500 constituents, the data was rounded to two
+  decimal places to reduce the file size of the data set.
 }
 \author{Marius Hofert}
 \examples{
