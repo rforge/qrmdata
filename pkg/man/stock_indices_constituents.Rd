@@ -23,7 +23,8 @@ data("HSI_const")
   the S\&P 500 constituents (\code{SP500_const} with corresponding
   Global Industry Classification Standard (GICS) information
   \code{SP500_const_info}; see
-  \url{https://en.wikipedia.org/wiki/List_of_S\%26P_500_companies})
+  \url{https://en.wikipedia.org/wiki/List_of_S\%26P_500_companies};
+  given these tickers, the data was obtained from \url{https://finance.yahoo.com/})
   as of 2015-10-12, the Dow Jones constituents (\code{DJ_const}; see
   \url{https://finance.yahoo.com/q/cp?s=\%5EDJI}) as of 2016-01-03,
   the FTSE 100 constituents (\code{FTSE_const}; see

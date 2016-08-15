@@ -1,0 +1,5 @@
+In vignette:
+1) Added
+   - colnames(JPY_USD) <- "JPY/USD" # adjust accordingly
+   - colnames(JPY_GBP) <- "JPY/GBP" # adjust accordingly
+   and corrected the data accordingly (on R-Forge, but not on CRAN yet)
