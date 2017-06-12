@@ -8,7 +8,9 @@ Description: Various data sets (stocks, stock indices, constituent data, FX,
 Authors@R: c(person(given = "Marius", family = "Hofert", role = c("aut", "cre"),
                     email = "marius.hofert@uwaterloo.ca"),
              person(given = "Kurt", family = "Hornik", role = "aut",
-                    email = "Kurt.Hornik@R-project.org"))
+                    email = "Kurt.Hornik@R-project.org"),
+             person(given = "Alexander", family = "McNeil", role = "aut",
+                    email = "alexander.mcneil@york.ac.uk"))
 Author: Marius Hofert [aut, cre], Kurt Hornik [aut]
 Maintainer: Marius Hofert <marius.hofert@uwaterloo.ca>
 Depends: R (>= 3.0.0)
