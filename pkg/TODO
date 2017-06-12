@@ -4,3 +4,4 @@ In vignette:
    - colnames(JPY_GBP) <- "JPY/GBP" # adjust accordingly
    and corrected the data accordingly (on R-Forge, but not on CRAN yet)
 2) We should have the Danish fire insurance data set in qrmdata
+3) Added Alex as author
