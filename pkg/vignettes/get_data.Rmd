@@ -270,17 +270,17 @@ save(CNY_GBP, file = "CNY_GBP.rda", compress = "xz")
 
 ```{r, eval = FALSE}
 ## Get data from http://www.bankofcanada.ca/rates/interest-rates/bond-yield-curves/
-ZCB_CA <- read.csv("data_yield_curves_CA.csv", header = TRUE, na.strings = " na", row.names = 1)
-head(ZCB_CA) # quick look
-ZCB_CA <- ZCB_CA[,-ncol(ZCB_CA)] # remove last (empty) column
+ZCB_CAD <- read.csv("data_yield_curves_CA.csv", header = TRUE, na.strings = " na", row.names = 1)
+head(ZCB_CAD) # quick look
+ZCB_CAD <- ZCB_CAD[,-ncol(ZCB_CAD)] # remove last (empty) column
 ## Pick out rows with *all* available data only
-ZCB_CA <- ZCB_CA[apply(!is.na(ZCB_CA), 1, all),]
+ZCB_CAD <- ZCB_CAD[apply(!is.na(ZCB_CAD), 1, all),]
 ## Create Date object
-dates <- as.Date(row.names(ZCB_CA), format = "%Y-%m-%d")
+dates <- as.Date(row.names(ZCB_CAD), format = "%Y-%m-%d")
 ## Create xts object
-ZCB_CA <- xts(ZCB_CA, dates)
+ZCB_CAD <- xts(ZCB_CAD, dates)
 ## Fix column names
-clnms <- colnames(ZCB_CA)
+clnms <- colnames(ZCB_CAD)
 clnms <- gsub("YR", "y", gsub("ZC", "", clnms)) # remove leading and trailing characters
 clnms <- sapply(clnms, function(x) { # insert "."
     if(nchar(x) == 4) { # insert "." after first char
@@ -289,14 +289,14 @@ clnms <- sapply(clnms, function(x) { # insert "."
         gsub('^(.{2})(.*)$', '\\1.\\2', x)
     }
 })
-colnames(ZCB_CA) <- clnms
-head(ZCB_CA)
+colnames(ZCB_CAD) <- clnms
+head(ZCB_CAD)
 ## Save
-save(ZCB_CA, file = "ZCB_CA.rda", compress = "xz")
+save(ZCB_CAD, file = "ZCB_CAD.rda", compress = "xz")
 
 ## Plot
 if(FALSE)
-    plot.zoo(ZCB_CA, screens = 1, col = adjustcolor("black", alpha.f = 0.05))
+    plot.zoo(ZCB_CAD, screens = 1, col = adjustcolor("black", alpha.f = 0.05))
 ```
 
 
@@ -304,22 +304,22 @@ if(FALSE)
 
 ```{r, eval = FALSE}
 ## Get data from https://www.quandl.com/data/FED/SVENY-US-Treasury-Zero-Coupon-Yield-Curve
-ZCB_US <- get_data("FED/SVENY", to = end, src = "quandl")
-head(ZCB_US) # quick look
+ZCB_USD <- get_data("FED/SVENY", to = end, src = "quandl")
+head(ZCB_USD) # quick look
 ## Pick out rows with *all* available data only
-ZCB_US <- ZCB_US[apply(!is.na(ZCB_US), 1, all),]
+ZCB_USD <- ZCB_USD[apply(!is.na(ZCB_USD), 1, all),]
 ## Fix column names
-clnms <- colnames(ZCB_US)
+clnms <- colnames(ZCB_USD)
 clnms <- paste0(gsub("SVENY", "", clnms),"y") # remove leading characters and append "y"
 clnms[1:9] <- substr(clnms[1:9], 2, 3) # remove leading "0"
-colnames(ZCB_US) <- clnms
-head(ZCB_US)
+colnames(ZCB_USD) <- clnms
+head(ZCB_USD)
 ## Save
-save(ZCB_US, file = "ZCB_US.rda", compress = "xz")
+save(ZCB_USD, file = "ZCB_USD.rda", compress = "xz")
 
 ## Plot
 if(FALSE)
-    plot.zoo(ZCB_US, screens = 1, col = adjustcolor("black", alpha.f = 0.05))
+    plot.zoo(ZCB_USD, screens = 1, col = adjustcolor("black", alpha.f = 0.05))
 ```
 
 
