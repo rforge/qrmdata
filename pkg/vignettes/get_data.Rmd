@@ -11,8 +11,8 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 ```{r, eval = FALSE}
-require(qrmtools)
-require(xts)
+library(qrmtools)
+library(xts)
 
 end <- "2015-12-31" # last trading day we consider
 ```
@@ -353,4 +353,21 @@ GOLD <- get_data("WGC/GOLD_DAILY_USD", to = end, src = "quandl")
 colnames(GOLD) <- "GOLD"
 stopifnot(!is.na(GOLD))
 save(GOLD, file = "GOLD.rda", compress = "xz")
+```
+
+
+## 8 Cryptocurrencies
+
+```{r, eval = FALSE}
+## Get Cryptocurrencies (1 unit in USD)
+end <- "2018-05-29" # end date chosen here
+## Get data from Yahoo Finance
+BTC_USD <- get_data("BTC-USD", to = end) # Bitcoin
+ETH_USD <- get_data("ETH-USD", to = end) # Ethereum
+LTC_USD <- get_data("LTC-USD", to = end) # Litecoin
+XRP_USD <- get_data("XRP-USD", to = end) # Ripple
+crypto <- do.call(merge, list(BTC_USD, ETH_USD, LTC_USD, XRP_USD))
+colnames(crypto) <- c("BTC", "ETH", "LTC", "XRP")
+## Save
+save(crypto, file = "crypto.rda", compress = "xz")
 ```
