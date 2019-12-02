@@ -13,7 +13,7 @@ Authors@R: c(person(given = "Marius", family = "Hofert", role = c("aut", "cre"),
                     email = "alexander.mcneil@york.ac.uk"))
 Author: Marius Hofert [aut, cre], Kurt Hornik [aut], Alexander J. McNeil [aut]
 Maintainer: Marius Hofert <marius.hofert@uwaterloo.ca>
-Depends: R (>= 3.0.0)
+Depends: R (>= 3.5.0)
 Imports: xts
 Suggests: knitr, qrmtools, lattice
 Enhances:
