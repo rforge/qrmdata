@@ -38,5 +38,13 @@ data("ZCB_USD")
 \examples{
 data("ZCB_CAD")
 data("ZCB_USD")
+mat <- as.matrix(ZCB_USD['2015-01-01/2015-12-31',])
+df <- data.frame(Day = rep(1:nrow(mat), each = ncol(mat)),
+                 Maturity = rep(1:ncol(mat), nrow(mat)),
+                 Value = as.vector(t(mat)))
+lattice::wireframe(Value ~ Day * Maturity, data = df,
+                   alpha.regions = 0.5,
+                   scales = list(arrows = FALSE, col = "black"),
+                   par.settings = list(axis.line = list(col = "transparent")))
 }
 \keyword{datasets}

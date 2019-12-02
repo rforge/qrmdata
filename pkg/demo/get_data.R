@@ -1,44 +1,48 @@
----
-title: Fetching the Datasets of qrmdata
-author: Marius Hofert
-date: '`r Sys.Date()`'
-output:
-  html_vignette:
-    css: style.css
-vignette: >
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{Fetching the Datasets of qrmdata}
-  %\VignetteEncoding{UTF-8}
----
-```{r, eval = FALSE}
-library(qrmtools)
+### By Marius Hofert
+
+## This script (and qrmtools::get_data) 'shows' how we obtained the data in
+## qrmdata. For this script to run, you need all appearing .csv files to be
+## in ../misc (as is the case for the *source code* of qrmdata).
+
+## Note: The data obtained online for free can and indeed does change over time.
+## Example:
+## 2019-12-02: Yahoo Finance provides BTC data only over a maximal range of about
+##             five years in the past, not since the earliest point in time anymore:
+##             dat <- getSymbols("BTC-USD", from = "1900-01-01", to = "2019-11-30", auto.assign = FALSE)
+##             head(dat) # => 2014-09-17 (on 2019-12-02).
+##             Also, the data does not coincide with data previously drawn for
+##             overlapping days, see for example:
+##             Ad(dat[index(dat) == "2015-11-30",]) # => 377.321
+##             crypto[index(crypto) == "2015-11-30","BTC"] # => 377.97
+##             Note: These differences can be quite more drastic.
+
+
+### Setup ######################################################################
+
+## Packages
+library(qrmtools) # for get_data()
 library(xts)
 
-end <- "2015-12-31" # last trading day we consider
-```
+## Last trading day we consider
+end <- "2015-12-31"
 
 
-## 1 Stock data
+### 1 Stock data ###############################################################
 
-Note: The `.csv` files can be found in `./misc` in the package's source directory.
-
-```{r, eval = FALSE}
 ## Radioshack
 ## Defaulted early 2015 => Yahoo Finance only has
 ## https://www.google.com/finance/historical?q=OTCMKTS%3ARSHCQ&ei=N_CAVvnUKsjjsAHJ3YvwDg
 ## but no adjusted close price (and values differ slightly)
-## => Use the data from Yahoo Finance as of 2015-01-21 here (collected by Alex J. McNeil)
-RSHCQ <- read.table("data_RSHCQ.csv", sep = ",", header = TRUE, row.names = 1) # get data
+## => Use the data from Yahoo Finance as of 2015-01-21 here (collected by A. J. McNeil)
+RSHCQ <- read.table("../misc/data_RSHCQ.csv", sep = ",", header = TRUE, row.names = 1) # get data
 dates <- as.Date(row.names(RSHCQ), format = "%Y-%m-%d") # get dates
 RSHCQ <- xts(RSHCQ, dates)[,"Adj.Close"] # create an xts object
 colnames(RSHCQ) <- "RSHCQ"
 save(RSHCQ, file = "RSHCQ.rda", compress = "xz")
-```
 
 
-## 2 Stock index data
+### 2 Stock index data #########################################################
 
-```{r, eval = FALSE}
 ## S&P 500
 SP500 <- get_data("^GSPC", to = end)
 save(SP500, file = "SP500.rda", compress = "xz")
@@ -86,23 +90,21 @@ save(SSEC, file = "SSEC.rda", compress = "xz")
 ## NIKKEI
 NIKKEI <- get_data("^N225", to = end)
 save(NIKKEI, file = "NIKKEI.rda", compress = "xz")
-```
 
 
-## 3 Constituents data
+### 3 Constituents data ########################################################
 
-### 3.1 S&P 500
+### 3.1 S&P 500 ################################################################
 
-<!-- Algorithm for S&P 500 (constituents not available on finance.yahoo.com):
-     1) Copy the ticker table from https://www.cboe.com/products/snp500.aspx without header
-     2) Paste it to a new document in LibreOffice
-     3) Remove all columns except: Ticker, GICS, GICS subsectors
-     4) Save it as a .csv file (when asked, make sure ',' is chosen as delimiter) -->
+## As constituent data is not available on finance.yahoo.com, we do the following:
+## 1) Copy the ticker table from https://www.cboe.com/products/snp500.aspx without
+##    header and paste it to a .csv (e.g. in LibreOffice).
+## 2) Remove all columns except: Ticker, GICS, GICS subsectors
+## 3) Save it as a .csv file.
 
-```{r, eval = FALSE}
 ## S&P 500 constituents
 ## See https://www.cboe.com/products/snp500.aspx (updated 2015-10-12)
-SP500_const_info <- read.table("data_SP500_const_tab.csv", sep = ",")
+SP500_const_info <- read.table("../misc/data_SP500_const_tab.csv", sep = ",")
 colnames(SP500_const_info) <- c("Ticker", "Sector", "Subsector")
 SP500_const <- get_data(SP500_const_info[,1], to = end) # get data for these tickers (takes a while)
 SP500_const <- round(SP500_const, digits = 2) # round to fit in a single R package
@@ -114,20 +116,18 @@ if(FALSE) {
           main = "Plot of NAs among the S&P 500 constituents")
     mtext("Black: NA; White: Data available", side = 4, line = 1, adj = 0)
 }
-```
 
 
-### 3.2 Other indexes
+### 3.2 Other indexes ##########################################################
 
-<!-- Algorithm for all but S&P 500:
-     1) Go to finance.yahoo.com -> ^DJI -> Components
-     2) Download the table to a .csv file (by copy-paste)
-     3) Remove everything but the first column (containing the tickers); keep the last line break -->
+## For all but S&P 500:
+## 1) finance.yahoo.com -> ^DJI -> Components
+## 2) Download the table to a .csv file (by copy-paste)
+## 3) Remove everything but the first column with the tickers (keep the last line break)
 
-```{r, eval = FALSE}
 ## Dow Jones constituents
 ## See https://finance.yahoo.com/q/cp?s=%5EDJI (drawn on 2015-12-10)
-DJ_const_info <- read.table("data_DJ_const_tab.csv")
+DJ_const_info <- read.table("../misc/data_DJ_const_tab.csv")
 colnames(DJ_const_info) <- "Ticker"
 DJ_const <- get_data(DJ_const_info[,1], to = end)
 save(DJ_const, file = "DJ_const.rda", compress = "xz") # Note: No info besides tickers available => don't save *_const_info
@@ -135,7 +135,7 @@ save(DJ_const, file = "DJ_const.rda", compress = "xz") # Note: No info besides t
 ## FTSE 100 constituents
 ## See https://uk.finance.yahoo.com/q/cp?s=%5EFTSE (drawn on 2015-12-10)
 ## Note: ncol(FTSE_const)=98 only
-FTSE_const_info <- read.table("data_FTSE_const_tab.csv")
+FTSE_const_info <- read.table("../misc/data_FTSE_const_tab.csv")
 colnames(FTSE_const_info) <- "Ticker"
 FTSE_const <- get_data(FTSE_const_info[,1], to = end)
 save(FTSE_const, file = "FTSE_const.rda", compress = "xz") # Note: No info besides tickers available => don't save *_const_info
@@ -144,7 +144,7 @@ save(FTSE_const, file = "FTSE_const.rda", compress = "xz") # Note: No info besid
 ## See https://uk.finance.yahoo.com/q/cp?s=%5ESSMI (drawn on 2015-12-10)
 ## Note: 6/20 stocks missing
 if(FALSE) {
-    SMI_const_info <- read.table("data_SMI_const_tab.csv")
+    SMI_const_info <- read.table("../misc/data_SMI_const_tab.csv")
     colnames(SMI_const_info) <- "Ticker"
     SMI_const <- get_data(SMI_const_info[,1], to = end)
     save(SMI_const, file = "SMI_const.rda", compress = "xz") # Note: No info besides tickers available => don't save *_const_info
@@ -153,25 +153,23 @@ if(FALSE) {
 ## Euro Stoxx 50 constituents
 ## See https://uk.finance.yahoo.com/q/cp?s=%5ESTOXX50E (drawn on 2015-12-10)
 ## Note: 2 stocks missing
-EURSTX_const_info <- read.table("data_EURSTX_const_tab.csv")
+EURSTX_const_info <- read.table("../misc/data_EURSTX_const_tab.csv")
 colnames(EURSTX_const_info) <- "Ticker"
 EURSTX_const <- get_data(EURSTX_const_info[,1], to = end)
 save(EURSTX_const, file = "EURSTX_const.rda", compress = "xz") # Note: No info besides tickers available => don't save *_const_info
 
 ## HSI constituents
 ## See https://uk.finance.yahoo.com/q/cp?s=%5EHSI (drawn on 2015-12-10)
-HSI_const_info <- read.table("data_HSI_const_tab.csv")
+HSI_const_info <- read.table("../misc/data_HSI_const_tab.csv")
 colnames(HSI_const_info) <- "Ticker"
 HSI_const <- get_data(HSI_const_info[,1], to = end)
 save(HSI_const, file = "HSI_const.rda", compress = "xz") # Note: No info besides tickers available => don't save *_const_info
 
 ## Note: NIKKEI constituents not available
-```
 
 
-## 4 FX data
+### 4 FX data ##################################################################
 
-```{r, eval = FALSE}
 ## Check that 1/"1 unit cur A in cur B" ~= "cur B in cur A"
 if(FALSE) {
     GBP_USD <- get_data("GBP/USD", to = end, src = "oanda") # 1 GBP in USD
@@ -185,12 +183,10 @@ if(FALSE) {
 ## Choose a reasonable 'from' date
 ## FX involving EUR are only available >= 1998-12-14
 from <- "2000-01-01"
-```
 
 
-### 4.1 */USD
+### 4.1 */USD ##################################################################
 
-```{r, eval = FALSE}
 ## CAD/USD
 CAD_USD <- get_data("CAD/USD", from = from, to = end, src = "oanda")
 head(CAD_USD)
@@ -223,12 +219,10 @@ save(JPY_USD, file = "JPY_USD.rda", compress = "xz")
 CNY_USD <- get_data("CNY/USD", from = from, to = end, src = "oanda")
 head(CNY_USD)
 save(CNY_USD, file = "CNY_USD.rda", compress = "xz")
-```
 
 
-### 4.2 */GBP
+### 4.2 */GBP ##################################################################
 
-```{r, eval = FALSE}
 ## CAD/GBP
 CAD_GBP <- get_data("CAD/GBP", from = from, to = end, src = "oanda")
 head(CAD_GBP)
@@ -261,14 +255,12 @@ save(JPY_GBP, file = "JPY_GBP.rda", compress = "xz")
 CNY_GBP <- get_data("CNY/GBP", from = from, to = end, src = "oanda")
 head(CNY_GBP)
 save(CNY_GBP, file = "CNY_GBP.rda", compress = "xz")
-```
 
 
-## 5 Interest rate data
+### 5 Interest rate data #######################################################
 
-### 5.1 Canada
+### 5.1 Canada #################################################################
 
-```{r, eval = FALSE}
 ## Get data from http://www.bankofcanada.ca/rates/interest-rates/bond-yield-curves/
 ZCB_CAD <- read.csv("data_yield_curves_CA.csv", header = TRUE, na.strings = " na", row.names = 1)
 head(ZCB_CAD) # quick look
@@ -297,12 +289,10 @@ save(ZCB_CAD, file = "ZCB_CAD.rda", compress = "xz")
 ## Plot
 if(FALSE)
     plot.zoo(ZCB_CAD, screens = 1, col = adjustcolor("black", alpha.f = 0.05))
-```
 
 
-### 5.2 US
+### 5.2 US #####################################################################
 
-```{r, eval = FALSE}
 ## Get data from https://www.quandl.com/data/FED/SVENY-US-Treasury-Zero-Coupon-Yield-Curve
 ZCB_USD <- get_data("FED/SVENY", to = end, src = "quandl")
 head(ZCB_USD) # quick look
@@ -320,21 +310,17 @@ save(ZCB_USD, file = "ZCB_USD.rda", compress = "xz")
 ## Plot
 if(FALSE)
     plot.zoo(ZCB_USD, screens = 1, col = adjustcolor("black", alpha.f = 0.05))
-```
 
 
-## 6 Volatility data
+### 6 Volatility data ##########################################################
 
-```{r, eval = FALSE}
 ## VIX
 VIX <- get_data("^VIX", to = end)
 save(VIX, file = "VIX.rda", compress = "xz")
-```
 
 
-## 7 Commodity data
+### 7 Commodity data ###########################################################
 
-```{r, eval = FALSE}
 ## Oil
 ## Note: - Brent Crude is the benchmark (https://en.wikipedia.org/wiki/Brent_Crude)
 ##       - See https://www.quandl.com/data/FRED?keyword=dcoil for the tickers
@@ -353,21 +339,18 @@ GOLD <- get_data("WGC/GOLD_DAILY_USD", to = end, src = "quandl")
 colnames(GOLD) <- "GOLD"
 stopifnot(!is.na(GOLD))
 save(GOLD, file = "GOLD.rda", compress = "xz")
-```
 
 
-## 8 Cryptocurrencies
+### 8 Cryptocurrencies #########################################################
 
-```{r, eval = FALSE}
+end <- "2019-11-30" # end date chosen here
+
 ## Get Cryptocurrencies (1 unit in USD)
-end <- "2018-05-29" # end date chosen here
-## Get data from Yahoo Finance
 BTC_USD <- get_data("BTC-USD", to = end) # Bitcoin
 ETH_USD <- get_data("ETH-USD", to = end) # Ethereum
 LTC_USD <- get_data("LTC-USD", to = end) # Litecoin
 XRP_USD <- get_data("XRP-USD", to = end) # Ripple
 crypto <- do.call(merge, list(BTC_USD, ETH_USD, LTC_USD, XRP_USD))
 colnames(crypto) <- c("BTC", "ETH", "LTC", "XRP")
-## Save
 save(crypto, file = "crypto.rda", compress = "xz")
-```
+

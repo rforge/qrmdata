@@ -43,6 +43,11 @@ data("CNY_GBP")
   2016-01-03 via the
   function \code{get_data()} from \CRANpkg{qrmtools}.
 }
+\details{
+  Interpretation: As an example, \code{EUR_USD} contains the EUR/USD
+  exchange rate, so a value \eqn{x} in \code{EUR_USD}
+  indicates that 1 EUR is worth \eqn{x} USD at that point in time.
+}
 \author{Marius Hofert}
 \examples{
 data("CAD_USD")

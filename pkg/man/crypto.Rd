@@ -3,8 +3,8 @@
 \docType{data}
 \title{Cryptocurrency Prices in USD}
 \description{
-  Bitcoin, Ethereum, Litecoin and Ripple prices in USD from their
-  first available date to 2018-05-29.
+  Bitcoin, Ethereum, Litecoin and Ripple prices in USD (from their
+  first available date onwards).
 }
 \usage{
 data("crypto")
@@ -13,8 +13,7 @@ data("crypto")
   \code{\link{xts}} object containing cryptocurrency prices in USD
   of Bitcoin (ticker symbol ``BTC-USD''), Ethereum (ticker symbol
   ``ETH-USD''), Litecoin (ticker symbol ``LTC-USD'') and Ripple (ticker
-  symbol ``XRP-USD'') from their first date of
-  availability to 2018-05-29.
+  symbol ``XRP-USD'') from their first available date onwards.
 }
 \source{
   The data was obtained from Yahoo Finance on 2018-05-29

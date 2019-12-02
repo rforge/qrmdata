@@ -1,5 +1,5 @@
 Package: qrmdata
-Version: 2016-01-03-1
+Version: 2019-12-02-1
 Encoding: UTF-8
 Title: Data Sets for Quantitative Risk Management Practice
 Description: Various data sets (stocks, stock indices, constituent data, FX,
@@ -9,16 +9,15 @@ Authors@R: c(person(given = "Marius", family = "Hofert", role = c("aut", "cre"),
                     email = "marius.hofert@uwaterloo.ca"),
              person(given = "Kurt", family = "Hornik", role = "aut",
                     email = "Kurt.Hornik@R-project.org"),
-             person(given = "Alexander", family = "McNeil", role = "aut",
+             person(given = "Alexander J.", family = "McNeil", role = "aut",
                     email = "alexander.mcneil@york.ac.uk"))
-Author: Marius Hofert [aut, cre], Kurt Hornik [aut]
+Author: Marius Hofert [aut, cre], Kurt Hornik [aut], Alexander J. McNeil [aut]
 Maintainer: Marius Hofert <marius.hofert@uwaterloo.ca>
 Depends: R (>= 3.0.0)
 Imports: xts
-Suggests: knitr, qrmtools
+Suggests: knitr, qrmtools, lattice
 Enhances:
 License: GPL-2 | GPL-3
-VignetteBuilder: knitr
 NeedsCompilation: no
 Repository: CRAN
 Date/Publication: 2016-05-26 15:26:50
