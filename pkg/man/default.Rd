@@ -1,7 +1,7 @@
 \name{default}
 \alias{SP_defaults}
 \docType{data}
-\title{Standard \& Poors Default Data}
+\title{Standard & Poor's Default Data}
 \description{
   A three-dimensional array containing the default data for A-, BBB-, BB-,
   B- and C-rated companies for the years from 1981 to 2000.
@@ -18,7 +18,7 @@ data("SP_defaults")
   2000-01-01 to 2015-12-31.
 }
 \source{
-  Standard \& Poors Credit Monitor % manually collected by Alexander J. McNeil
+  Standard & Poor's Credit Monitor % manually collected by Alexander J. McNeil
 }
 \author{Marius Hofert}
 \examples{
