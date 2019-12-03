@@ -267,6 +267,8 @@ head(ZCB_CAD) # quick look
 ZCB_CAD <- ZCB_CAD[,-ncol(ZCB_CAD)] # remove last (empty) column
 ## Pick out rows with *all* available data only
 ZCB_CAD <- ZCB_CAD[apply(!is.na(ZCB_CAD), 1, all),]
+## Convert to % (as ZCB_USD below)
+ZCB_CAD <- 100 * ZCB_CAD
 ## Create Date object
 dates <- as.Date(row.names(ZCB_CAD), format = "%Y-%m-%d")
 ## Create xts object
