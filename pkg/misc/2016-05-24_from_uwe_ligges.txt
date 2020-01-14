@@ -1,0 +1,27 @@
+From: Uwe Ligges <ligges@statistik.tu-dortmund.de>
+Date: Tue, May 24, 2016 at 7:19 AM
+Subject: Re: CRAN submission qrmdataInterest 0.0-1
+To: Marius Hofert <marius.hofert@uwaterloo.ca>
+Cc: CRAN <cran@r-project.org>
+
+
+Marius,
+
+this has been discussed in the CRAN team intensively and we got to the
+following conclusion:
+
+
+- the reason for having the 5 MB limit is that we do not want to waste
+space on CRAN, distributing 20MB between 4 packages makes the Note
+silent, but actually generates more overhead.
+
+- there seem to be important reasons for having this on CRAN which
+justifies to make an exception here
+
+Therefore, we would accept this data collection, but only if you bundle
+it in one package that is not updated more often than once a year,
+ideally using a version number that shows the date of the latest data
+update.
+
+Best,
+Uwe
