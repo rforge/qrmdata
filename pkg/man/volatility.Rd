@@ -3,7 +3,7 @@
 \docType{data}
 \title{Volatility Index}
 \description{
-  Volatility index data.
+  Chicago Board Options Exchange (CBOE) volatility index (VIX) data.
 }
 \usage{
 data("VIX")
@@ -16,6 +16,11 @@ data("VIX")
 \source{
   The data was obtained from Yahoo Finance on 2016-01-03 via the
   function \code{get_data()} from \CRANpkg{qrmtools}.
+}
+\details{
+The VIX is typically used as a market-based measure of volatility in
+percent; see the white paper \url{https://www.cboe.com/micro/vix/vixwhite.pdf}
+on how the VIX is constructed.
 }
 \author{Marius Hofert}
 \examples{
